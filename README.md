@@ -1,6 +1,6 @@
 Projeto criado com create-react-app.
 
-Nesse projeto, é possível criar, consultar e excluir um contrato. Assim como visualizar várias partes pertencentes a tal contrato, assim como cadastrar uma nova parte.
+Nesse projeto, é possível criar, consultar e excluir um contrato. Assim como visualizar várias partes pertencentes a tal contrato e cadastrar uma nova parte.
 
 Dependências: 
   - @material-ui/core;
