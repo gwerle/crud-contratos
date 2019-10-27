@@ -1,0 +1,23 @@
+{
+  "contratos": [],
+  "partes": [
+    {
+      "id": 1,
+      "idContrato": 1,
+      "nome": "Gustavo",
+      "sobrenome": "Werle",
+      "email": "gustavo.werle2@gmail.com",
+      "CPF": "99999999999",
+      "telefone": "419966358393"
+    },
+    {
+      "id": 2,
+      "idContrato": 1,
+      "nome": "Thiago",
+      "sobrenome": "Silva",
+      "email": "thiago.silva@gmail.com",
+      "CPF": "99999999999",
+      "telefone": "41997845634"
+    }
+  ]
+}
