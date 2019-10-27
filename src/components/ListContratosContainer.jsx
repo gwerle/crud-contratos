@@ -16,11 +16,11 @@ class ListContratosContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <ListContratos
           listContratos={this.props.listContratos}
+          listPartes={this.props.listPartes}
           thunks={this.props.thunks}
           isPostSuccessful={this.props.isPostSuccessful}
           isPostFailed={this.props.isPostFailed}
@@ -34,6 +34,7 @@ class ListContratosContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     listContratos: state.list.listContratos,
+    listPartes: state.listPartes.listPartes,
     isPostSuccessful: state.successSnackbarOn,
     isPostFailed: state.errorSnackbarOn
   };

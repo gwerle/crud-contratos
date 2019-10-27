@@ -20,6 +20,12 @@ export const FooterModal = styled.div`
   right: 22%;
 `;
 
+export const FooterModalPartes = styled.div`
+  position: fixed;
+  bottom: 22%;
+  right: 20%;
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
@@ -30,7 +36,7 @@ export const Form = styled.form`
   padding: 20px;
 `;
 
-export const AdicionarContratoStyle = styled.div`
+export const EndRightDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

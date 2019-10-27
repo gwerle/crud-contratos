@@ -15,7 +15,8 @@ export default function CadastroContratosModalContent(props) {
   const [values, setValues] = React.useState({
     titulo: "",
     dataInicio: "",
-    dataVencimento: ""
+    dataVencimento: "",
+    ativo: true
   });
 
   const handleChange = name => event => {
@@ -42,7 +43,8 @@ export default function CadastroContratosModalContent(props) {
             value={values.nome}
             onChange={handleChange("titulo")}
             margin="normal"
-            style={{ marginLeft: "3%", marginRight: "3%" }}
+            variant="outlined"
+            style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
             id="dataInicio"
@@ -51,10 +53,11 @@ export default function CadastroContratosModalContent(props) {
             value={values.dataInicio}
             onChange={handleChange("dataInicio")}
             margin="normal"
+            variant="outlined"
             InputLabelProps={{
               shrink: true
             }}
-            style={{ marginLeft: "3%", marginRight: "3%" }}
+            style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
             id="dataVencimento"
@@ -63,10 +66,11 @@ export default function CadastroContratosModalContent(props) {
             value={values.dataVencimento}
             onChange={handleChange("dataVencimento")}
             margin="normal"
+            variant="outlined"
             InputLabelProps={{
               shrink: true
             }}
-            style={{ marginLeft: "3%", marginRight: "3%" }}
+            style={{ marginLeft: "1%", marginRight: "1%" }}
           />
 
           <div style={{ padding: "30px" }}>

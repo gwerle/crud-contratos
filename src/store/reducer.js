@@ -9,6 +9,10 @@ export default function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         list: payload
       });
+    case TYPES.GET_LIST_PARTES:
+      return Object.assign({}, state, {
+        listPartes: payload
+      });
     case TYPES.SUCCESS_SNACKBAR:
       return Object.assign({}, state, {
         successSnackbarOn: true

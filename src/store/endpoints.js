@@ -11,13 +11,13 @@ export function postContrato(data) {
 }
 
 export function deleteContrato(idContrato) {
-  return axios.delete(`${PATH_CONTRATOS}/${idContrato}`);
+  return axios.put(`${PATH_CONTRATOS}/${idContrato}`, { ativo: false });
 }
 
 export function getPartes(idContrato) {
-  return axios.get(`${PATH_CONTRATOS}/partes/?idContrato_like=${idContrato}`);
+  return axios.get(`${CONSTAINT}/partes/?idContrato_like=${idContrato}`);
 }
 
-export function postPartes(data) {
-  return axios.post(`${PATH_CONTRATOS}/partes`, data);
+export function postParte(data) {
+  return axios.post(`${CONSTAINT}/partes`, data);
 }

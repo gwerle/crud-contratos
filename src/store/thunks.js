@@ -34,3 +34,24 @@ export const deleteContrato = idContrato => {
     });
   };
 };
+
+export const getPartes = idContrato => {
+  return dispatch => {
+    rest.getPartes(idContrato).then(resp => {
+      dispatch(actions.setListPartes(resp.data));
+    });
+  };
+};
+
+export const postNewParte = data => {
+  return dispatch => {
+    rest.postParte(data).then(resp => {
+      if (resp.status === 201) {
+        dispatch(actions.showSuccessSnackbar());
+        dispatch(getPartes(data.idContrato));
+      } else {
+        dispatch(actions.showErrorSnackbar());
+      }
+    });
+  };
+};

@@ -6,7 +6,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import { ContainerWithoutPadding, AdicionarContratoStyle } from "./styles";
+import { ContainerWithoutPadding, EndRightDiv } from "./styles";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -52,7 +52,7 @@ export default function ListContratos(props) {
           <CssBaseline />
           <ContainerWithoutPadding fixed>
             <Typography component="div" />
-            <AdicionarContratoStyle>
+            <EndRightDiv>
               <Tooltip title="Adicionar Contrato">
                 <Fab color="primary" style={{ margin: "20px" }}>
                   <AddIcon onClick={handleOpen} />
@@ -77,7 +77,7 @@ export default function ListContratos(props) {
                   </Modal>
                 </Fab>
               </Tooltip>
-            </AdicionarContratoStyle>
+            </EndRightDiv>
             {props.isPostSuccessful && (
               <Snackbar
                 variant={"success"}
@@ -88,14 +88,13 @@ export default function ListContratos(props) {
               <Snackbar variant={"error"} message={"Ops! Algo deu errado!"} />
             )}
             <div>
-              {props.listContratos.map((item, index) => (
-                <PartesCardCollapse
-                  item={item}
-                  key={index}
-                  thunks={props.thunks}
-                  hideSnackbar={props.hideSnackbar}
-                />
-              ))}
+              <PartesCardCollapse
+                listContratos={props.listContratos}
+                listPartes={props.listPartes}
+                item={props.listContratos}
+                thunks={props.thunks}
+                hideSnackbar={props.hideSnackbar}
+              />
             </div>
           </ContainerWithoutPadding>
         </div>

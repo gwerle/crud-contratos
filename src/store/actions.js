@@ -5,6 +5,11 @@ export const setList = listContratos => ({
   payload: { listContratos }
 });
 
+export const setListPartes = listPartes => ({
+  type: TYPES.GET_LIST_PARTES,
+  payload: { listPartes }
+});
+
 export const showSuccessSnackbar = () => ({
   type: TYPES.SUCCESS_SNACKBAR
 });

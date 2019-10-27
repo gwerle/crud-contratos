@@ -10,13 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import PartesCardContent from "./PartesCardContent";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/IconButton";
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
@@ -38,80 +31,69 @@ const useStyles = makeStyles(theme => ({
 export default function PartesCardCollapse(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-    props.hideSnackbar();
+  const handleClickPrimaryAction = id => {
+    props.thunks.deleteContrato(id);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const getListPartes = id => {
+    props.thunks.getPartes(id);
   };
 
-  const handleClickPrimaryAction = item => {
-    props.thunks.deleteContrato(item.id);
-    setOpen(false);
+  const handleChange = (expanded, panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
   };
 
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+  return props.listContratos.map((item, index) => {
+    if (item.ativo) {
+      return (
+        <div
+          className={classes.root}
+          onClick={() => getListPartes(item.id)}
+          key={index}
         >
-          <Typography className={classes.heading}>
-            {`Título: ${props.item.titulo}`}
-          </Typography>
-          <Typography className={classes.heading}>
-            {`Data de Início: ${props.item.dataInicio}`}
-          </Typography>
-          <Typography className={classes.heading}>
-            {`Data de Vencimento: ${props.item.dataVencimento}`}
-          </Typography>
-          <Tooltip title="Excluir Contrato">
-            <IconButton
-              className={classes.button}
-              aria-label="delete"
-              onClick={handleClickOpen}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <PartesCardContent />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Confirmação"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Tem certeza que deseja excluir?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Não
-          </Button>
-          <Button
-            onClick={() => {
-              handleClickPrimaryAction(props.item);
-            }}
-            color="primary"
-            autoFocus
+          <ExpansionPanel
+            expanded={expanded === item.id}
+            onChange={handleChange(expanded, item.id)}
           >
-            Sim
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                {`Título: ${item.titulo}`}
+              </Typography>
+              <Typography className={classes.heading}>
+                {`Data de Início: ${item.dataInicio}`}
+              </Typography>
+              <Typography className={classes.heading}>
+                {`Data de Vencimento: ${item.dataVencimento}`}
+              </Typography>
+              <Tooltip title="Excluir Contrato">
+                <IconButton
+                  className={classes.button}
+                  aria-label="delete"
+                  onClick={() => handleClickPrimaryAction(item.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <PartesCardContent
+                thunks={props.thunks}
+                idContrato={item.id}
+                listPartes={props.listPartes}
+                hideSnackbar={props.hideSnackbar}
+              />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  });
 }
