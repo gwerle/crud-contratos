@@ -28,6 +28,9 @@ const useStyles1 = makeStyles(theme => ({
   message: {
     display: "flex",
     alignItems: "center"
+  },
+  icon: {
+    margin: "10px"
   }
 }));
 
@@ -42,7 +45,7 @@ function MySnackbarContentWrapper(props) {
       aria-describedby="client-snackbar"
       message={
         <span id="client-snackbar" className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
+          <Icon className={classes.icon} />
           {message}
         </span>
       }

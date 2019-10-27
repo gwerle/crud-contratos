@@ -6,9 +6,12 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DeleteIcon from "@material-ui/icons/Delete";
+import PictureAsPdf from "@material-ui/icons/PictureAsPdf";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import PartesCardContent from "./PartesCardContent";
+
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,6 +28,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     alignItems: "center",
     float: "right"
+  },
+  button: {
+    margin: "0px 0px 0px auto"
   }
 }));
 
@@ -37,6 +43,13 @@ export default function PartesCardCollapse(props) {
     props.thunks.deleteContrato(id);
   };
 
+  const showDocument = base64PDF => {
+    let pdfWindow = window.open("");
+    pdfWindow.document.write(
+      `<iframe width='100%' height='100%' src=${encodeURI(base64PDF)}></iframe>`
+    );
+  };
+
   const getListPartes = id => {
     props.thunks.getPartes(id);
   };
@@ -44,6 +57,8 @@ export default function PartesCardCollapse(props) {
   const handleChange = (expanded, panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  moment.locale("pt-br");
 
   return props.listContratos.map((item, index) => {
     if (item.ativo) {
@@ -66,11 +81,23 @@ export default function PartesCardCollapse(props) {
                 {`Título: ${item.titulo}`}
               </Typography>
               <Typography className={classes.heading}>
-                {`Data de Início: ${item.dataInicio}`}
+                {`Data de Início: ${moment(item.dataInicio).format("L")}`}
               </Typography>
               <Typography className={classes.heading}>
-                {`Data de Vencimento: ${item.dataVencimento}`}
+                {`Data de Vencimento: ${moment(item.dataVencimento).format(
+                  "L"
+                )}`}
               </Typography>
+              {item.documento && (
+                <Tooltip title="Visualizar PDF">
+                  <IconButton
+                    aria-label="visualizar"
+                    onClick={() => showDocument(item.documento)}
+                  >
+                    <PictureAsPdf />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title="Excluir Contrato">
                 <IconButton
                   className={classes.button}

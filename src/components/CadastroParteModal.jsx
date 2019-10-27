@@ -38,6 +38,7 @@ export default function CadastroParteModal(props) {
         </AppBar>
         <Form>
           <TextField
+            required
             id="nome"
             label="Nome"
             value={values.nome}
@@ -47,6 +48,7 @@ export default function CadastroParteModal(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="sobrenome"
             label="Sobrenome"
             value={values.sobrenome}
@@ -56,6 +58,7 @@ export default function CadastroParteModal(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="outlined-email-input"
             label="Email"
             type="email"
@@ -67,6 +70,7 @@ export default function CadastroParteModal(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="cpf"
             label="CPF"
             value={values.cpf}
@@ -76,6 +80,7 @@ export default function CadastroParteModal(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="telefone"
             label="Telefone"
             value={values.telefone}

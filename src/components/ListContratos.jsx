@@ -85,7 +85,12 @@ export default function ListContratos(props) {
               />
             )}
             {props.isPostFailed && (
-              <Snackbar variant={"error"} message={"Ops! Algo deu errado!"} />
+              <Snackbar
+                variant={"error"}
+                message={
+                  "Ops! Algo deu errado! Confirme se todos os campos obrigatórios foram preenchidos!"
+                }
+              />
             )}
             <div>
               <PartesCardCollapse

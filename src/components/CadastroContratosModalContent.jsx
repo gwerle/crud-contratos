@@ -16,6 +16,7 @@ export default function CadastroContratosModalContent(props) {
     titulo: "",
     dataInicio: "",
     dataVencimento: "",
+    documento: "",
     ativo: true
   });
 
@@ -28,6 +29,20 @@ export default function CadastroContratosModalContent(props) {
     handleClose();
   }
 
+  function convertToBase64() {
+    const selectedFile = document.getElementById("inputFile").files;
+    if (selectedFile.length > 0) {
+      const fileToLoad = selectedFile[0];
+      const fileReader = new FileReader();
+      let base64;
+      fileReader.onload = function(fileLoadedEvent) {
+        base64 = fileLoadedEvent.target.result;
+        setValues({ ...values, documento: base64 });
+      };
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
+
   return (
     <div>
       <div>
@@ -38,6 +53,7 @@ export default function CadastroContratosModalContent(props) {
         </AppBar>
         <Form>
           <TextField
+            required
             id="titulo"
             label="Título"
             value={values.nome}
@@ -47,6 +63,7 @@ export default function CadastroContratosModalContent(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="dataInicio"
             label="Data de Início"
             type="date"
@@ -60,6 +77,7 @@ export default function CadastroContratosModalContent(props) {
             style={{ marginLeft: "1%", marginRight: "1%" }}
           />
           <TextField
+            required
             id="dataVencimento"
             label="Data de Vencimento"
             type="date"
@@ -76,7 +94,7 @@ export default function CadastroContratosModalContent(props) {
           <div style={{ padding: "30px" }}>
             <p>Selecione o PDF/DOC do Contrato:</p>
             <RaisedButton>
-              <input type="file" />
+              <input id="inputFile" type="file" onChange={convertToBase64} />
             </RaisedButton>
           </div>
         </Form>

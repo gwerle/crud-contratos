@@ -11,14 +11,18 @@ export const getListContratos = () => {
 
 export const postNewContrato = data => {
   return dispatch => {
-    rest.postContrato(data).then(resp => {
-      if (resp.status === 201) {
-        dispatch(actions.showSuccessSnackbar());
-        dispatch(getListContratos());
-      } else {
-        dispatch(actions.showErrorSnackbar());
-      }
-    });
+    if (data.titulo && data.dataInicio && data.dataVencimento) {
+      rest.postContrato(data).then(resp => {
+        if (resp.status === 201) {
+          dispatch(actions.showSuccessSnackbar());
+          dispatch(getListContratos());
+        } else {
+          dispatch(actions.showErrorSnackbar());
+        }
+      });
+    } else {
+      dispatch(actions.showErrorSnackbar());
+    }
   };
 };
 
@@ -45,13 +49,23 @@ export const getPartes = idContrato => {
 
 export const postNewParte = data => {
   return dispatch => {
-    rest.postParte(data).then(resp => {
-      if (resp.status === 201) {
-        dispatch(actions.showSuccessSnackbar());
-        dispatch(getPartes(data.idContrato));
-      } else {
-        dispatch(actions.showErrorSnackbar());
-      }
-    });
+    if (
+      data.nome &&
+      data.sobrenome &&
+      data.email &&
+      data.cpf &&
+      data.telefone
+    ) {
+      rest.postParte(data).then(resp => {
+        if (resp.status === 201) {
+          dispatch(actions.showSuccessSnackbar());
+          dispatch(getPartes(data.idContrato));
+        } else {
+          dispatch(actions.showErrorSnackbar());
+        }
+      });
+    } else {
+      dispatch(actions.showErrorSnackbar());
+    }
   };
 };
