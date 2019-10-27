@@ -2,6 +2,7 @@ Projeto criado com create-react-app.
 
 Nesse projeto é possível criar, consultar e excluir um contrato. Assim como visualizar várias partes pertencentes a tal contrato e cadastrar uma nova parte.
 
+<<<<<<< HEAD
 Dependências:
 
 - @material-ui/core;
@@ -13,6 +14,20 @@ Dependências:
 - styled-components;
 - json-server.
 
+=======
+Dependências: 
+  - React ^16.9;
+  - @material-ui/core;
+  - @material-ui/icons;
+  - axios;
+  - redux;
+  - react-redux;
+  - redux-thunk;
+  - styled-components;
+  - json-server.
+  
+  
+>>>>>>> 29137c2799b1822f5738f3fcaf06162654452ec2
 Para inicializar o projeto, deve-se entrar na pasta do projeto e rodar os seguintes comandos:
 
 ```sh
