@@ -11,7 +11,8 @@ Dependências:
   - react-redux;
   - redux-thunk;
   - styled-components;
-  - json-server.
+  - json-server;
+  - moment;
   
 
 Para inicializar o projeto, deve-se entrar na pasta do projeto e rodar os seguintes comandos:
