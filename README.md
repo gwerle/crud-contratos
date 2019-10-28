@@ -13,6 +13,7 @@ Dependências:
   - styled-components;
   - json-server;
   - moment;
+  - PropTypes.
   
 
 Para inicializar o projeto, deve-se entrar na pasta do projeto e rodar os seguintes comandos:
