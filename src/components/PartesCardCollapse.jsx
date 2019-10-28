@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -36,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function PartesCardCollapse(props) {
   const classes = useStyles();
+  moment.locale("pt-br");
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -57,8 +59,6 @@ export default function PartesCardCollapse(props) {
   const handleChange = (expanded, panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
-  moment.locale("pt-br");
 
   return props.listContratos.map((item, index) => {
     if (item.ativo) {
@@ -124,3 +124,14 @@ export default function PartesCardCollapse(props) {
     }
   });
 }
+
+PartesCardCollapse.propTypes = {
+  listPartes: null
+};
+
+PartesCardCollapse.propTypes = {
+  thunks: PropTypes.objectOf(PropTypes.any).isRequired,
+  listContratos: PropTypes.arrayOf(PropTypes.any).isRequired,
+  listPartes: PropTypes.arrayOf(PropTypes.any),
+  hideSnackbar: PropTypes.func.isRequired
+};

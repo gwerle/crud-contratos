@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import clsx from "clsx";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -18,7 +20,7 @@ const variantIcon = {
   info: InfoIcon
 };
 
-const useStyles1 = makeStyles(theme => ({
+const useStylesSnackbar = makeStyles(theme => ({
   success: {
     backgroundColor: green[600]
   },
@@ -35,7 +37,7 @@ const useStyles1 = makeStyles(theme => ({
 }));
 
 function MySnackbarContentWrapper(props) {
-  const classes = useStyles1();
+  const classes = useStylesSnackbar();
   const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
@@ -64,7 +66,7 @@ function MySnackbarContentWrapper(props) {
   );
 }
 
-export default function CustomizedSnackbars(props) {
+export default function CustomSnackbar(props) {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = (event, reason) => {
@@ -94,3 +96,19 @@ export default function CustomizedSnackbars(props) {
     </div>
   );
 }
+
+MySnackbarContentWrapper.defaultProps = {
+  className: {}
+};
+
+MySnackbarContentWrapper.propTypes = {
+  className: PropTypes.objectOf(PropTypes.any),
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  variant: PropTypes.string.isRequired
+};
+
+CustomSnackbar.propTypes = {
+  variant: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired
+};

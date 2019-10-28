@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { FooterModalPartes, Form } from "./styles";
 
@@ -23,10 +24,10 @@ export default function CadastroParteModal(props) {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  function getFormValues() {
+  const getFormValues = () => {
     props.thunks.postNewParte(values);
     props.handleClose();
-  }
+  };
 
   return (
     <div>
@@ -106,3 +107,9 @@ export default function CadastroParteModal(props) {
     </div>
   );
 }
+
+CadastroParteModal.propTypes = {
+  idContrato: PropTypes.number.isRequired,
+  thunks: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleClose: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -96,7 +97,6 @@ export default function ListContratos(props) {
               <PartesCardCollapse
                 listContratos={props.listContratos}
                 listPartes={props.listPartes}
-                item={props.listContratos}
                 thunks={props.thunks}
                 hideSnackbar={props.hideSnackbar}
               />
@@ -107,3 +107,15 @@ export default function ListContratos(props) {
     </div>
   );
 }
+
+ListContratos.defaultProps = {
+  listContratos: null
+};
+
+ListContratos.propTypes = {
+  hideSnackbar: PropTypes.func.isRequired,
+  listContratos: PropTypes.arrayOf(PropTypes.any),
+  thunks: PropTypes.objectOf(PropTypes.any).isRequired,
+  isPostSuccessful: PropTypes.bool.isRequired,
+  isPostFailed: PropTypes.bool.isRequired
+};

@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -52,3 +54,11 @@ export default function PartesTable(props) {
     return <div>Nenhum dado cadastrado!</div>;
   }
 }
+
+PartesTable.defaultProps = {
+  listPartes: null
+};
+
+PartesTable.propTypes = {
+  listPartes: PropTypes.arrayOf(PropTypes.any)
+};

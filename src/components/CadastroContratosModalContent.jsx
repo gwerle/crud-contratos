@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { FooterModal, Form } from "./styles";
 
@@ -24,12 +25,12 @@ export default function CadastroContratosModalContent(props) {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  function getFormValues() {
+  const getFormValues = () => {
     props.thunks.postNewContrato(values);
     handleClose();
-  }
+  };
 
-  function convertToBase64() {
+  const convertToBase64 = () => {
     const selectedFile = document.getElementById("inputFile").files;
     if (selectedFile.length > 0) {
       const fileToLoad = selectedFile[0];
@@ -41,7 +42,7 @@ export default function CadastroContratosModalContent(props) {
       };
       fileReader.readAsDataURL(fileToLoad);
     }
-  }
+  };
 
   return (
     <div>
@@ -114,3 +115,8 @@ export default function CadastroContratosModalContent(props) {
     </div>
   );
 }
+
+CadastroContratosModalContent.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  thunks: PropTypes.objectOf(PropTypes.any).isRequired
+};
